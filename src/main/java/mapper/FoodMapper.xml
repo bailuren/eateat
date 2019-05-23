@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.FoodMapper">
+
+    <insert id="insertFood" useGeneratedKeys="true"  keyProperty="id" parameterType="entity.Food">
+        insert into food (name,price,type) values (#{name},#{price},#{type})
+    </insert>
+
+    <select id="selectFoodById" resultType="entity.Food" parameterType="int">
+        select * from food where id = #{id}
+    </select>
+
+    <update id="updateFood" parameterType="entity.Food">
+        update food set name=#{name},price=#{price},type=#{type} where id=#{id}
+    </update>
+
+    <delete id="deleteFood" parameterType="int">
+        delete from food where id=#{id}
+    </delete>
+
+    <select id="selectFoodAll" resultType="entity.Food">
+        select * from food
+    </select>
+</mapper>

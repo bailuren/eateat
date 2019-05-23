@@ -1,0 +1,66 @@
+drop database if exists dingcan;
+create database dingcan character set utf8;
+
+#创建管理员的表
+create table admin(
+      id int auto_increment primary key,
+      username varchar(20) not null,
+      password varchar(20) not null,
+      name varchar(20) not null,
+      phone char(11) not null
+);
+
+#创建公告的表
+create table board(
+    id int auto_increment primary key,
+    message varchar(255) not null,
+    time varchar(20) not null
+);
+
+#创建厨师的表
+create table chef(
+    id int auto_increment primary key,
+    username varchar(20) not null,
+    password varchar(20) not null,
+    name varchar(20) not null,
+    phone char(11) not null
+);
+
+#创建客户的表
+create table customer(
+    id int auto_increment primary key,
+    password varchar(20) not null,
+    name varchar(20) not null,
+    phone char(11) not null,
+    birthday varchar(20) not null
+);
+
+#创建餐桌的表
+create table desk(
+    id int auto_increment primary key,
+    type int not null,
+    state int not null
+);
+
+#创建菜品的表
+create table food(
+    id int auto_increment primary key,
+    name varchar(20) not null,
+    price double not null,
+    type int not null,
+    num int
+);
+
+#创建订单的表
+create table orde(
+    id int auto_increment primary key,
+    deskId int not null,
+    price double not null,
+    time varchar(20) not null
+);
+
+#创建订单和菜品对应的表
+create table order_food(
+    orderId int not null,
+    foodId int not null
+);

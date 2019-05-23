@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.ChefMapper">
+
+    <insert id="insertChef" useGeneratedKeys="true"  keyProperty="id" parameterType="entity.Chef">
+        insert into chef (username,password,name,phone) values (#{username},#{password},#{name},#{phone})
+    </insert>
+
+    <select id="selectChef" resultType="entity.Chef" parameterType="int">
+        select * from chef where id = #{id}
+    </select>
+
+    <update id="updateChef" >
+        update from chef set username=#{username},password=#{password},name=#{name},phone=#{phone} where id=#{id}
+    </update>
+
+    <delete id="deleteChef" parameterType="int">
+        delete from chef where id=#{id}
+    </delete>
+</mapper>
