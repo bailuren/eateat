@@ -8,12 +8,12 @@ import util.SqlSessionFactoryUtil;
 import java.util.List;
 
 public class DeskService {
-    public static List<Desk> selectEmptyDesk(){
+    public static List<Desk> selectEmptyDesk(int type){
         SqlSession session = SqlSessionFactoryUtil.getSession();
         DeskMapper deskMapper = session.getMapper(DeskMapper.class);
         List<Desk> list = null;
         try{
-            list = deskMapper.selectEmptyDesk();
+            list = deskMapper.selectEmptyDesk(type);
             session.commit();
         }catch (Exception e){
             session.rollback();

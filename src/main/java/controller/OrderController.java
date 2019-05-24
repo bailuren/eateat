@@ -1,10 +1,12 @@
 package controller;
 
+
 import entity.Food;
 import entity.Order;
 import net.sf.json.JSON;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
+import net.sf.json.JsonConfig;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -22,10 +24,13 @@ public class OrderController {
 
     @RequestMapping(value="/insertOrder",method = RequestMethod.POST)
     @ResponseBody
-    public String insertOrder(@RequestBody Order order){
+    public String insertOrder(@RequestBody String req){
+        JSONObject object = JSONObject.fromObject(req);
+        JSONArray jsonArray = object.getJSONArray("menu");
+        List<Food> menu = JSONArray.toList(jsonArray,new Food(),new JsonConfig());
+        Order order = new Order(object.getInt("deskId"),object.getDouble("totalPrice"),object.getString("time"),menu);
         JSONObject jsonObject = new JSONObject();
-        if(OrderService.insertOrder(order)){
-            OrderAndFoodService.insertOrderAndFood(order.getId(),order.getMenu());
+        if(OrderService.insertOrder(order) && OrderAndFoodService.insertOrderAndFood(order.getId(),order.getMenu())){
             jsonObject.put("ok",1);
         }else{
             jsonObject.put("ok",0);

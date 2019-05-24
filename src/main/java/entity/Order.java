@@ -50,4 +50,24 @@ public class Order {
     private double totalPrice;
     private String time;
     private List<Food> menu;
+    public Order(int id, int deskId, double totalPrice, String time) {
+        this.id = id;
+        this.deskId = deskId;
+        this.totalPrice = totalPrice;
+        this.time = time;
+    }
+    public Order(int id, int deskId, double totalPrice, String time, List<Food> menu) {
+        this.id = id;
+        this.deskId = deskId;
+        this.totalPrice = totalPrice;
+        this.time = time;
+        this.menu = menu;
+    }
+    public Order(int deskId, double totalPrice, String time, List<Food> menu) {
+        this.deskId = deskId;
+        this.totalPrice = totalPrice;
+        this.time = time;
+        this.menu = menu;
+    }
+
 }

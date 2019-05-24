@@ -3,9 +3,9 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mapper.OrderAndFoodMapper">
     <insert id="insertOrderAndFood">
-        insert into order_food (orderId,foodId)values
+        insert into order_food (orderId,foodId,num)values
         <foreach collection="menu" item="item" separator=",">
-            (#{arg0},'${item .id}')
+            (#{arg0},'${item .id}','${item.num}')
         </foreach>
     </insert>
 

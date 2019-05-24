@@ -62,5 +62,6 @@ create table orde(
 #创建订单和菜品对应的表
 create table order_food(
     orderId int not null,
-    foodId int not null
+    foodId int not null,
+    num int not null
 );

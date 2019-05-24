@@ -11,11 +11,15 @@
         select * from desk where id = #{id}
     </select>
 
-    <update id="updateDesk" >
+    <update id="updateDesk" parameterType="entity.Desk">
         update from desk set type=#{type},state=#{state} where id=#{id}
     </update>
 
     <delete id="deleteDesk" parameterType="int">
         delete from desk where id=#{id}
     </delete>
+
+    <select id="selectEmptyDesk" resultType="entity.Desk" parameterType="int">
+        select * from desk where state = 0 and type >= #{type} order by type
+    </select>
 </mapper>

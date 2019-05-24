@@ -46,6 +46,9 @@ public class Food {
     private Integer num;
     private String name;
 
+    public Food(){
+
+    }
     public Food(int id, String name,double price, int type,Integer num) {
         this.id = id;
         this.name = name;

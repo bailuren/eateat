@@ -10,5 +10,5 @@ public interface DeskMapper {
     int deleteDesk(int id);
     Desk selectDesk(int id);
     List<Desk> selectAllDesk();
-    List<Desk> selectEmptyDesk();
+    List<Desk> selectEmptyDesk(int type);
 }

@@ -19,7 +19,7 @@
         delete from desk where id=#{id}
     </delete>
 
-    <select id="selectEmptyDesk" resultType="entity.Desk">
-        select * from desk where state = 0
+    <select id="selectEmptyDesk" resultType="entity.Desk" parameterType="int">
+        select * from desk where state = 0 and type >= #{type} order by type
     </select>
 </mapper>
