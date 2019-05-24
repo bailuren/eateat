@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.OrderMapper">
+
+    <resultMap id="orderResultMap" type="entity.Order">
+        <id property="id" column="id"/>
+        <result property="deskId" column="deskId"/>
+        <result property="totalPrice" column="price"/>
+        <result property="time" column="time"/>
+        <collection property="menu" javaType="ArrayList"
+                    column="id" ofType="entity.Food"
+                    select="selectOrderFood"/>
+    </resultMap>
+    <select id="selectOrderFood" resultType="entity.Food">
+        select * from food where id in
+        (
+          select foodId from order_food where orderId=#{id}
+        )
+    </select>
+    <select id="selectOrderAll" resultMap="orderResultMap">
+        select * from orde
+    </select>
+
+    <delete id="deleteOrder" parameterType="int">
+        delete from order_food where orderId=#{id}
+    </delete>
+
+    <insert id="insertOrder" parameterType="entity.Order">
+        insert into orde (deskId,price,time)values(#{deskId},#{totalPrice},#{time})
+        <selectKey order="AFTER" resultType="java.lang.Integer" keyProperty="id">
+            select LAST_INSERT_ID()
+        </selectKey>
+    </insert>
+</mapper>

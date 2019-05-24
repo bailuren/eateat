@@ -95,10 +95,11 @@ public class CustomerController {
     }
     @RequestMapping(value="/updateCustomer",method = RequestMethod.POST)
     @ResponseBody
-    public String updateCustomer(@RequestBody Customer customer){
-        /*JSONObject object = JSONObject.fromObject(req);
-        int id = object.getInt("id");*/
-        System.out.println(customer.toString()+"\n\n\n\n");
+    public String updateCustomer(@RequestBody String req){
+        JSONObject object = JSONObject.fromObject(req);
+        System.out.println(object.toString());
+        Customer customer = new Customer(object.getInt("id"),object.getString("password"),object.getString("username"),
+                object.getString("phone"),object.getString("birthday"));
         JSONObject jsonObject = new JSONObject();
         if(CustomerService.updateCustomer(customer)){
             jsonObject.put("ok",1);

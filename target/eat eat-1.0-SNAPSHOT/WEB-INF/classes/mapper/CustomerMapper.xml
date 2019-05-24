@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.CustomerMapper">
+
+    <insert id="insertCustomer" useGeneratedKeys="true"  keyProperty="id" parameterType="entity.Customer">
+        insert into customer (username,password,phone,birthday) values (#{username},#{password},#{phone},#{birthday})
+    </insert>
+
+    <select id="selectCustomerById" resultType="entity.Customer" parameterType="int">
+        select * from customer where id = #{id}
+    </select>
+    <select id="selectCustomerByUsername" resultType="entity.Customer" >
+        select * from customer where username = #{username,jdbcType=VARCHAR} and password = #{password,jdbcType=VARCHAR}
+    </select>
+    <select id="selectCustomerAll" resultType="entity.Customer">
+        select * from customer
+    </select>
+
+    <update id="updateCustomer" parameterType="entity.Customer">
+        update from customer set username=#{username},password=#{password},birthday=#{birthday},phone=#{phone} where id=#{id}
+    </update>
+
+
+    <delete id="deleteCustomer" parameterType="int">
+        delete from customer where id=#{id}
+    </delete>
+</mapper>
