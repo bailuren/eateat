@@ -57,8 +57,13 @@ public class Food {
         this.num = num;
     }
 
-
     public Food(String name,double price, int type) {
+        this.name = name;
+        this.price = price;
+        this.type = type;
+    }
+    public Food(int id,String name,double price, int type) {
+        this.id = id;
         this.name = name;
         this.price = price;
         this.type = type;

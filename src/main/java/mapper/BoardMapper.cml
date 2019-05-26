@@ -12,7 +12,7 @@
     </select>
 
 <update id="updateBoard" >
-        update from board set type=#{message},state=#{time} where id=#{id}
+        update board set message=#{message},time=#{time} where id=#{id}
     </update>
 
 <delete id="deleteBoard" parameterType="int">

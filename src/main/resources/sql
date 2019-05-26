@@ -48,7 +48,7 @@ create table food(
     name varchar(20) not null,
     price double not null,
     type int not null,
-    num int
+    num int default 0
 );
 
 #创建订单的表
@@ -56,12 +56,15 @@ create table orde(
     id int auto_increment primary key,
     deskId int not null,
     price double not null,
-    time varchar(20) not null
+    time varchar(20) not null,
+    state int not null,
+    customerId int not null,
+    chefId int default 0
 );
 
 #创建订单和菜品对应的表
 create table order_food(
     orderId int not null,
     foodId int not null,
-    num int not null
+    num int default 0
 );

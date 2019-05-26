@@ -8,6 +8,19 @@ public class Board {
     private String message;
     private String time;
 
+    public Board(){
+
+    }
+    public Board(String message, String time) {
+        this.message = message;
+        this.time = time;
+    }
+    public Board(int id, String message, String time) {
+        this.id = id;
+        this.message = message;
+        this.time = time;
+    }
+
     public String getTime() {
         return time;
     }

@@ -23,10 +23,18 @@ public class Customer {
                 '}';
     }
 
+    public Customer(){}
+
     public Customer(int id, String password, String username, String phone, String birthday) {
         this.id = id;
         this.username = username;
         this.password = password;
+        this.phone = phone;
+        this.birthday = birthday;
+    }
+    public Customer(int id, String username, String phone, String birthday) {
+        this.id = id;
+        this.username = username;
         this.phone = phone;
         this.birthday = birthday;
     }

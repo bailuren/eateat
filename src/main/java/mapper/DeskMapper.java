@@ -8,7 +8,9 @@ public interface DeskMapper {
     int insertDesk(Desk desk);
     int updateDesk(int id);
     int deleteDesk(int id);
-    Desk selectDesk(int id);
-    List<Desk> selectAllDesk();
+    List<Desk> selectDeskAll();
     List<Desk> selectEmptyDesk(int type);
+
+    int updateDeskState1(int id);
+    int updateDeskState0(int id);
 }

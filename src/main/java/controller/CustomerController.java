@@ -97,11 +97,23 @@ public class CustomerController {
     @ResponseBody
     public String updateCustomer(@RequestBody String req){
         JSONObject object = JSONObject.fromObject(req);
-        System.out.println(object.toString());
-        Customer customer = new Customer(object.getInt("id"),object.getString("password"),object.getString("username"),
+        Customer customer = new Customer(object.getInt("id"),object.getString("username"),
                 object.getString("phone"),object.getString("birthday"));
         JSONObject jsonObject = new JSONObject();
         if(CustomerService.updateCustomer(customer)){
+            jsonObject.put("ok",1);
+        }else{
+            jsonObject.put("ok",0);
+        }
+        return jsonObject.toString();
+    }
+
+    @RequestMapping(value = "/deleteCustomer",method = RequestMethod.POST)
+    @ResponseBody
+    public String deleteCustomer(@RequestBody String req){
+        JSONObject jsonObject = JSONObject.fromObject(req);
+        int id = jsonObject.getInt("id");
+        if(CustomerService.deleteCustomer(id)){
             jsonObject.put("ok",1);
         }else{
             jsonObject.put("ok",0);

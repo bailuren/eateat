@@ -7,6 +7,29 @@ import java.util.List;
  * 订单
  */
 public class Order {
+    public int getState() {
+        return state;
+    }
+
+    public void setState(int state) {
+        this.state = state;
+    }
+
+    public int getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(int customerId) {
+        this.customerId = customerId;
+    }
+
+    public Integer getChefId() {
+        return chefId;
+    }
+
+    public void setChefId(Integer chefId) {
+        this.chefId = chefId;
+    }
     public int getId() {
         return id;
     }
@@ -47,15 +70,52 @@ public class Order {
 
     private int id;
     private int deskId;
+    private int state;
+    private int customerId;
+    private Integer chefId;
     private double totalPrice;
     private String time;
     private List<Food> menu;
-    public Order(int id, int deskId, double totalPrice, String time) {
+
+    public Order(int id, int deskId, double totalPrice, String time,int state, int customerId, int chefId, List<Food> menu) {
         this.id = id;
         this.deskId = deskId;
+        this.state = state;
+        this.customerId = customerId;
+        this.chefId = chefId;
+        this.totalPrice = totalPrice;
+        this.time = time;
+        this.menu = menu;
+    }
+
+    public Order(int id, int deskId, int state, int customerId, double totalPrice, String time, List<Food> menu) {
+        this.id = id;
+        this.deskId = deskId;
+        this.state = state;
+        this.customerId = customerId;
+        this.totalPrice = totalPrice;
+        this.time = time;
+        this.menu = menu;
+    }
+
+    public Order(int id, int deskId, double totalPrice, String time,int state, int customerId)  {
+        this.id = id;
+        this.deskId = deskId;
+        this.state = state;
+        this.customerId = customerId;
         this.totalPrice = totalPrice;
         this.time = time;
     }
+    public Order(int id, int deskId, double totalPrice, String time,int state, int customerId,Integer chefId)  {
+        this.id = id;
+        this.deskId = deskId;
+        this.state = state;
+        this.customerId = customerId;
+        this.totalPrice = totalPrice;
+        this.time = time;
+        this.chefId = chefId;
+    }
+
     public Order(int id, int deskId, double totalPrice, String time, List<Food> menu) {
         this.id = id;
         this.deskId = deskId;
@@ -63,11 +123,15 @@ public class Order {
         this.time = time;
         this.menu = menu;
     }
-    public Order(int deskId, double totalPrice, String time, List<Food> menu) {
+    public Order(int deskId, int state, int customerId, double totalPrice, String time, List<Food> menu) {
         this.deskId = deskId;
         this.totalPrice = totalPrice;
         this.time = time;
         this.menu = menu;
+        this.state = state;
+        this.customerId = customerId;
     }
+
+    public Order(){}
 
 }

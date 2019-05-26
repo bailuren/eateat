@@ -1,5 +1,6 @@
 package service;
 
+import entity.Food;
 import entity.Order;
 import mapper.OrderMapper;
 import org.apache.ibatis.session.SqlSession;
@@ -19,6 +20,13 @@ public class OrderService {
         List<Order> list = null;
         try{
             list = orderMapper.selectOrderAll();
+            for(Order order: list){
+                List<Food> foodList = order.getMenu();
+                for(Food food:foodList){
+                    int num = orderMapper.selectFoodNum(order.getId(),food.getId());
+                    food.setNum(num);
+                }
+            }
             session.commit();
         }catch (Exception e){
             e.printStackTrace();
@@ -61,6 +69,91 @@ public class OrderService {
         int flag = 0;
         try{
             flag = orderMapper.insertOrder(order);
+            session.commit();
+        }catch (Exception e){
+            session.rollback();
+            e.printStackTrace();
+        }finally {
+            session.close();
+        }
+        return flag!=0;
+    }
+
+    public static List<Order> selectOrderByCustomerId(int id){
+        SqlSession session = SqlSessionFactoryUtil.getSession();
+        OrderMapper orderMapper = session.getMapper(OrderMapper.class);
+        List<Order> list = null;
+        try{
+            list = orderMapper.selectOrderByCustomerId(id);
+            for(Order order: list){
+                List<Food> foodList = order.getMenu();
+                for(Food food:foodList){
+                    int num = orderMapper.selectFoodNum(order.getId(),food.getId());
+                    food.setNum(num);
+                }
+            }
+            session.commit();
+        }catch (Exception e){
+            session.rollback();
+            e.printStackTrace();
+        }finally {
+            session.close();
+        }
+        return list;
+    }
+
+    public static List<Order> selectOrderUndo(){
+        SqlSession session = SqlSessionFactoryUtil.getSession();
+        OrderMapper orderMapper = session.getMapper(OrderMapper.class);
+        List<Order> list = null;
+        try{
+            list = orderMapper.selectOrderUndo();
+            for(Order order: list){
+                List<Food> foodList = order.getMenu();
+                for(Food food:foodList){
+                    int num = orderMapper.selectFoodNum(order.getId(),food.getId());
+                    food.setNum(num);
+                }
+            }
+            session.commit();
+        }catch (Exception e){
+            session.rollback();
+            e.printStackTrace();
+        }finally {
+            session.close();
+        }
+        return list;
+    }
+
+    public static List<Order> selectOrderByChefId(int id){
+        SqlSession session = SqlSessionFactoryUtil.getSession();
+        OrderMapper orderMapper = session.getMapper(OrderMapper.class);
+        List<Order> list = null;
+        try{
+            list = orderMapper.selectOrderByChefId(id);
+            for(Order order: list){
+                List<Food> foodList = order.getMenu();
+                for(Food food:foodList){
+                    int num = orderMapper.selectFoodNum(order.getId(),food.getId());
+                    food.setNum(num);
+                }
+            }
+            session.commit();
+        }catch (Exception e){
+            session.rollback();
+            e.printStackTrace();
+        }finally {
+            session.close();
+        }
+        return list;
+    }
+
+    public static boolean updateOrderState(int orderId,int chefId){
+        SqlSession session = SqlSessionFactoryUtil.getSession();
+        OrderMapper orderMapper = session.getMapper(OrderMapper.class);
+        int flag = 0;
+        try{
+            flag = orderMapper.updateOrderState(orderId,chefId);
             session.commit();
         }catch (Exception e){
             session.rollback();

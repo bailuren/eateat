@@ -9,6 +9,14 @@ public class Chef {
     private String username;
     private String password;
     private String phone;
+    private int orderNum;
+    public int getOrderNum() {
+        return orderNum;
+    }
+
+    public void setOrderNum(int orderNum) {
+        this.orderNum = orderNum;
+    }
 
     public int getId() {
         return id;

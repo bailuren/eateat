@@ -7,8 +7,8 @@
         insert into chef (username,password,name,phone) values (#{username},#{password},#{name},#{phone})
     </insert>
 
-    <select id="selectChef" resultType="entity.Chef" parameterType="int">
-        select * from chef where id = #{id}
+    <select id="selectChef" resultType="entity.Chef" >
+        select * from chef where username = #{arg0} and password = #{arg1}
     </select>
 
     <update id="updateChef" >
@@ -18,4 +18,13 @@
     <delete id="deleteChef" parameterType="int">
         delete from chef where id=#{id}
     </delete>
+
+
+    <select id="selectChefOrderNum" parameterType="int" resultType="int">
+        select count(*) from orde where chefId = #{id}
+    </select>
+
+    <select id="selectChefAll" resultType="entity.Chef">
+        select * from chef
+    </select>
 </mapper>

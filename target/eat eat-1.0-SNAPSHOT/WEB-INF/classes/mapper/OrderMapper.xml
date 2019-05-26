@@ -6,6 +6,8 @@
     <resultMap id="orderResultMap" type="entity.Order">
         <id property="id" column="id"/>
         <result property="deskId" column="deskId"/>
+        <result property="customerId" column="customerId"/>
+        <result property="state" column="state"/>
         <result property="totalPrice" column="price"/>
         <result property="time" column="time"/>
         <collection property="menu" javaType="ArrayList"
@@ -16,20 +18,40 @@
         select * from food where id in
         (
           select foodId from order_food where orderId=#{id}
-        )
+        );
     </select>
     <select id="selectOrderAll" resultMap="orderResultMap">
         select * from orde
     </select>
 
     <delete id="deleteOrder" parameterType="int">
-        delete from order_food where orderId=#{id}
+        delete from orde where id=#{id}
     </delete>
 
     <insert id="insertOrder" parameterType="entity.Order">
-        insert into orde (deskId,price,time)values(#{deskId},#{totalPrice},#{time})
+        insert into orde (deskId,state,customerId,price,time)values(#{deskId},0,#{customerId},#{totalPrice},#{time})
         <selectKey order="AFTER" resultType="java.lang.Integer" keyProperty="id">
             select LAST_INSERT_ID()
         </selectKey>
     </insert>
+
+    <select id="selectFoodNum" resultType="int">
+        select num from order_food where orderId=#{arg0} and foodId=#{arg1}
+    </select>
+
+    <select id="selectOrderByCustomerId" parameterType="int" resultMap="orderResultMap">
+        select * from orde where customerId = #{id}
+    </select>
+
+    <select id="selectOrderUndo" resultMap="orderResultMap">
+        select * from orde where state = 0;
+    </select>
+
+    <select id="selectOrderByChefId" parameterType="int" resultMap="orderResultMap">
+        select * from orde where chefId = #{id} and state = 0;
+    </select>
+
+    <update id="updateOrderState" parameterType="int">
+        update orde set state = 1 ,chefId=#{arg1} where id=#{arg0}
+    </update>
 </mapper>

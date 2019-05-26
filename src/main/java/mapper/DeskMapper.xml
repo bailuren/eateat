@@ -7,8 +7,8 @@
         insert into desk (type,state) values (#{type},#{state})
     </insert>
 
-    <select id="selectDesk" resultType="entity.Desk" parameterType="int">
-        select * from desk where id = #{id}
+    <select id="selectDeskAll" resultType="entity.Desk">
+        select * from desk
     </select>
 
     <update id="updateDesk" parameterType="entity.Desk">
@@ -22,4 +22,12 @@
     <select id="selectEmptyDesk" resultType="entity.Desk" parameterType="int">
         select * from desk where state = 0 and type >= #{type} order by type
     </select>
+
+    <update id="updateDeskState1" parameterType="int">
+        update desk set state = 1 where id = #{id}
+    </update>
+
+    <update id="updateDeskState0" parameterType="int">
+        update desk set state = 0 where id = #{id}
+    </update>
 </mapper>

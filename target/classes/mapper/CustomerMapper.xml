@@ -18,7 +18,7 @@
     </select>
 
     <update id="updateCustomer" parameterType="entity.Customer">
-        update from customer set username=#{username},password=#{password},birthday=#{birthday},phone=#{phone} where id=#{id}
+        update customer set username=#{username},birthday=#{birthday},phone=#{phone} where id=#{id}
     </update>
 
 

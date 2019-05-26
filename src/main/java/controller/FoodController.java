@@ -17,7 +17,7 @@ public class FoodController {
 
     @RequestMapping(value = "/selectFoodAll",method = RequestMethod.POST)
     @ResponseBody()
-    public String selectFoodAll(HttpServletResponse response){
+    public String selectFoodAll(){
         List<Food> list = FoodService.selectFoodAll();
         JSONArray jsonArray = JSONArray.fromObject(list);
         return jsonArray.toString();
@@ -39,7 +39,10 @@ public class FoodController {
 
     @RequestMapping(value = "/updateFood",method = RequestMethod.POST)
     @ResponseBody
-    public String updateFood(@RequestBody Food food){
+    public String updateFood(@RequestBody String req){
+        JSONObject object =JSONObject.fromObject(req);
+        Food food = new Food(object.getInt("id"),object.getString("name"),
+                object.getDouble("price"),object.getInt("type"));
         JSONObject jsonObject = new JSONObject();
         if(FoodService.updateFood(food)){
             jsonObject.put("ok",1);

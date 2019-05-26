@@ -23,7 +23,7 @@ public class AdminController {
     /**
      * 校验登录
      */
-    @RequestMapping(value="/logincheck",method=RequestMethod.POST)
+    @RequestMapping(value="/loginCheck",method=RequestMethod.POST)
     @ResponseBody
     public String loginCheck(@RequestBody String req){
         JSONObject object = JSONObject.fromObject(req);
