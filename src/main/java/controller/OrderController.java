@@ -102,6 +102,20 @@ public class OrderController {
         return object.toString();
     }
 
+    @RequestMapping(value = "/updateOrderState1",method = RequestMethod.POST)
+    @ResponseBody
+    public String updateOrderState1(@RequestBody String req){
+        JSONObject jsonObject = JSONObject.fromObject(req);
+        int orderId = jsonObject.getInt("orderId");
+        JSONObject object = new JSONObject();
+        if(OrderService.updateOrderState1(orderId)){
+            object.put("ok",1);
+        }else{
+            object.put("ok",0);
+        }
+        return object.toString();
+    }
+
     @RequestMapping(value = "/selectOrderByChefId",method = RequestMethod.POST)
     @ResponseBody
     public String selectOrderByChefId(@RequestBody String req){

@@ -163,4 +163,20 @@ public class OrderService {
         }
         return flag!=0;
     }
+
+    public static boolean updateOrderState1(int id){
+        SqlSession session = SqlSessionFactoryUtil.getSession();
+        OrderMapper orderMapper = session.getMapper(OrderMapper.class);
+        int flag = 0;
+        try{
+            flag = orderMapper.updateOrderState1(id);
+            session.commit();
+        }catch (Exception e){
+            session.rollback();
+            e.printStackTrace();
+        }finally {
+            session.close();
+        }
+        return flag!=0;
+    }
 }

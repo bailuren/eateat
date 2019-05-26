@@ -6,6 +6,7 @@ import java.util.List;
 
 public interface OrderMapper {
     int updateOrderState(int orderId,int chefId);
+    int updateOrderState1(int orderId);
     int deleteOrder(int id);
     List<Order> selectOrderAll();
     int insertOrder(Order order);
