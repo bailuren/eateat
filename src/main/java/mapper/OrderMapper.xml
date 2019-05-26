@@ -51,6 +51,9 @@
         select * from orde where chefId = #{id} and state = 0;
     </select>
 
+    <select id="selectOrderChefId" parameterType="int" resultType="int">
+        select chefId from orde where id=#{id};
+    </select>
     <update id="updateOrderState" parameterType="int">
         update orde set chefId=#{arg1} where id=#{arg0}
     </update>

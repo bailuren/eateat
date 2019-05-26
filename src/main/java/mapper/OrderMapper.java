@@ -10,9 +10,9 @@ public interface OrderMapper {
     int deleteOrder(int id);
     List<Order> selectOrderAll();
     int insertOrder(Order order);
+    int selectOrderChefId(int id);
     int selectFoodNum(int orderId,int foodId);
     List<Order> selectOrderUndo();
     List<Order> selectOrderByCustomerId(int id);
-
     List<Order> selectOrderByChefId(int id);
 }

@@ -179,4 +179,20 @@ public class OrderService {
         }
         return flag!=0;
     }
+
+    public static int selectOrderChefId(int id){
+        SqlSession session = SqlSessionFactoryUtil.getSession();
+        OrderMapper orderMapper = session.getMapper(OrderMapper.class);
+        int flag = 0;
+        try{
+            flag = orderMapper.selectOrderChefId(id);
+            session.commit();
+        }catch (Exception e){
+            session.rollback();
+            e.printStackTrace();
+        }finally {
+            session.close();
+        }
+        return flag;
+    }
 }

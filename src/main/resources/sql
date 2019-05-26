@@ -1,5 +1,6 @@
 drop database if exists dingcan;
 create database dingcan character set utf8;
+use dingcan;
 
 #创建管理员的表
 create table admin(
@@ -7,7 +8,7 @@ create table admin(
       username varchar(20) not null,
       password varchar(20) not null,
       name varchar(20) not null,
-      phone char(11) not null
+      phone char(yu11) not null
 );
 
 #创建公告的表

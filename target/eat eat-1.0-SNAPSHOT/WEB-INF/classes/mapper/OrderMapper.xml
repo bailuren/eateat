@@ -44,14 +44,20 @@
     </select>
 
     <select id="selectOrderUndo" resultMap="orderResultMap">
-        select * from orde where state = 0;
+        select * from orde where chefId = 0;
     </select>
 
     <select id="selectOrderByChefId" parameterType="int" resultMap="orderResultMap">
         select * from orde where chefId = #{id} and state = 0;
     </select>
 
+    <select id="selectOrderChefId" parameterType="int" resultType="int">
+        select chefId from orde where id=#{id};
+    </select>
     <update id="updateOrderState" parameterType="int">
-        update orde set state = 1 ,chefId=#{arg1} where id=#{arg0}
+        update orde set chefId=#{arg1} where id=#{arg0}
+    </update>
+    <update id="updateOrderState1" parameterType="int">
+        update orde set state = 1 where id=#{orderId}
     </update>
 </mapper>
